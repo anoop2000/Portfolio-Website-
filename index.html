@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Anoop Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+<style>
+
+/*======================================
+//--//-->   ABOUT
+======================================*/
+
+.about-mf .box-shadow-full {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.about-mf .about-img {
+  margin-bottom: 2rem;
+}
+
+.about-mf .about-img img {
+  margin-left: 10px;
+}
+
+
+.skill-mf .progress {
+  /* background-color: #cde1f8; */
+  margin: .5rem 0 1.2rem 0;
+  border-radius: 0;
+  height: .7rem;
+}
+
+.skill-mf .progress .progress-bar {
+  height: .7rem;
+  background-color: #ffbd39;
+}
+
+
+/* Animation styles */
+#typing-animation {
+  position: relative;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(20, end) infinite;
+}
+
+#typing-animation:before {
+  content: "";
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #ccc;
+  animation: typing-cursor 0.5s ease-in-out infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes typing-cursor {
+  from {
+    width: 5px;
+  }
+  to {
+    width: 0;
+  }
+}
+
+
+/* project image zoom effect */
+
+.zoom-effect {
+  overflow: hidden;
+  transition: transform 0.3s ease-out;
+}
+
+.zoom-effect:hover {
+  transform: scale(1.1);
+}
+
+
+</style>
+
+
+
+<style>
+	.error {
+		color: red;
+	}
+</style>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+	(function() {
+		emailjs.init("5Xg9eE4F_2klxsQsX");
+	})();
+</script>
+
+<!-- form validation -->
+
+<script type="text/javascript">
+	function validateForm() {
+		var correct = /^[A-Za-z]+$/;
+		var user_name = document.getElementById("username").value;
+		var password = document.getElementById('passWord').value;
+		var confpass = document.getElementById('pass').value;
+		var emailIds = document.getElementById('email').value;
+		var messageError = document.getElementById('subject').value;
+		var valid = true;
+
+		// Username validation
+		if (user_name == "") {
+			document.getElementById('error').innerHTML = "**Please fill this field";
+			valid = false;
+		} else if (!user_name.match(correct)) {
+			document.getElementById('error').innerHTML = "**Only alphabets are allowed...";
+			valid = false;
+		} else if (user_name.length < 3 || user_name.length > 25) {
+			document.getElementById('error').innerHTML = "**Characters must be between 3 and 25";
+			valid = false;
+		} else {
+			document.getElementById('error').innerHTML = "";
+		}
+
+		// Email validation
+		if (emailIds == "") {
+			document.getElementById('emailId').innerHTML = "**Please fill this field";
+			valid = false;
+		} else if (emailIds.indexOf('@') <= 0) {
+			document.getElementById('emailId').innerHTML = "**Invalid position of @";
+			valid = false;
+		} else {
+			document.getElementById('emailId').innerHTML = "";
+		}
+
+		// Password validation
+		if (password == "") {
+			document.getElementById('passW').innerHTML = "**Please fill this field";
+			valid = false;
+		} else if (password.length < 8 || password.length > 15) {
+			document.getElementById('passW').innerHTML = "**Number of characters must be between 8 and 15";
+			valid = false;
+		} else {
+			document.getElementById('passW').innerHTML = "";
+		}
+
+		// Confirm password validation
+		if (confpass == "") {
+			document.getElementById('confopass').innerHTML = "**Please reenter the password";
+			valid = false;
+		} else if (password != confpass) {
+			document.getElementById('confopass').innerHTML = "**Passwords do not match";
+			valid = false;
+		} else {
+			document.getElementById('confopass').innerHTML = "";
+		}
+
+		// Message validation
+		if (messageError == "") {
+			document.getElementById('msg').innerHTML = "**This field can't be empty...";
+			valid = false;
+		} else {
+			document.getElementById('msg').innerHTML = "";
+		}
+
+		return valid; // Return true if all validations pass, otherwise false
+	}
+
+	function sendMail() {
+		var params = {
+			from_name: document.getElementById('username').value,
+			email_id: document.getElementById('email').value,
+			message: document.getElementById('subject').value
+		};
+		emailjs.send("service_axzqg4k", "template_fcjkhix", params)
+			.then(function(res) {
+				alert("Success! Email sent. Status: " + res.status);
+			})
+			.catch(function(error) {
+				alert("Failed to send email. Error: " + error);
+			});
+	}
+
+	// Form submit handler
+	window.onload = function() {
+		document.getElementById('myForm').addEventListener('submit', function(event) {
+			event.preventDefault(); // Prevent the default form submission
+			if (validateForm()) {
+				sendMail(); // Send email only if the form is valid
+			}
+		});
+	}
+</script>
+
+
+
+
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+	  
+	  
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">Anoop R</a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Gallery</span></a></li>
+	          <li class="nav-item"><a href="#service-section" class="nav-link"><span>Services</span></a></li>
+			  <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
+	          
+			  <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	  <section id="home-section" class="hero">
+		  <div class="home-slider  owl-carousel">
+	       <div class="slider-item ">
+	      	<div class="overlay"></div>
+	         <div class="container">
+	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
+	          	<!-- <div class="one-third js-fullheight order-md-last img" style="background-image:url(./image3/personal pic.jpg);">
+	          	 <div class="overlay"></div>
+	          	</div> -->
+		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+		          	<div class="text">
+		          		<span class="subheading">Hello!</span>
+			            <h1 class="mb-4 mt-3">I'm <span>Anoop R</span></h1>
+
+						<!-- Element to contain animated typing -->
+						<span id="typing-animation"></span>
+
+						<script>
+
+						// Initialize the typing animation
+						const typingAnimationElement = document.getElementById('typing-animation');
+
+						// Create an array of typing text
+						const typingTexts = [
+						'An Aspiring Mern Stack developer  ',
+						
+						
+						];
+
+						// Create a function to display the typing animation for a given text
+						function playTypingAnimation(text) {
+						// Loop through each character and add it to the element
+						for (let i = 0; i < text.length; i++) {
+							setTimeout(() => {
+							typingAnimationElement.textContent += text[i];
+							}, i * 200); // Increase the delay to slow down the typing animation
+						}
+
+						// Once the animation is complete, reset the text and start over
+						setTimeout(() => {
+							typingAnimationElement.textContent = '';
+							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
+						}, text.length * 200);
+						}
+
+						// Start the typing animation loop
+						playTypingAnimation(typingTexts[0]);
+
+						</script>
+
+						<br>
+						<br>
+			            <!-- <h2>A Senior Data Analyst</h2> -->
+						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
+						<!-- <br> -->
+			            <!-- <p><a href="https://www.youtube.com/@RishabhMishraOfficial" class="btn btn-primary py-3 px-4">YouTube</a>  -->
+							<!-- <a href="https://github.com/rishabhnmishra" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p> -->
+		            </div>
+		          </div>
+	        	</div>
+	        </div>
+	      </div>
+		</div>
+    </section>
+
+
+
+    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
+    	<div class="container">
+			<div class="row">
+				<div class="row d-flex align-items-stretch">
+				<!-- <div class="row d-flex"> -->
+					<div class="col-md-6 col-lg-5 d-flex">
+						<div class="img-about img d-flex align-items-stretch">
+							<div class="overlay">
+								<div class="row">
+									<div class="col-sm-6 col-md-5">
+									  <div class="about-img">
+										<img src="./image3/personal pic.jpg" class="img-fluid rounded b-shadow-a" alt="">
+									  </div>
+									</div>
+									<!-- Details next to profile image -->
+									<div class="col-sm-6 col-md-7">
+									  <div class="about-info">
+										<p><span class="title-s">Name: </span> <span>Anoop R</span></p>
+										<p><span class="title-s">Student: </span> <span>Learning MERN stack</span></p>
+										
+										<p><span class="title-s">Address: </span> <span>Trivandrum, Kerala,India</span></p>
+									  </div>
+									</div>
+								  </div>
+
+								<!-- <div class="skill-mf">
+									<p class="title-s">Skills</p>
+									<span>SQL</span> <span class="pull-right">95%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									
+									<span>PYTHON</span> <span class="pull-right">85%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									
+									<span>Data Visualization</span> <span class="pull-right">90%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									
+									<span>Statistical Analysis</span> <span class="pull-right">85%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									
+									<span>Machine Learning</span> <span class="pull-right">80%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
+						<div class="row justify-content-start pb-3">
+							<div class="col-md-12 heading-section ftco-animate">
+								
+								<h1 class="big">About </h1>
+								<h2 class="mb-4">About me</h2>
+								
+								<p>I have Completed my B.Tech in Mechanical Engineering. I have created both static and responsive websites. I am also passionate about creating websites. I have created 3 public websites. I have learned basics of HTML,CSS,Javascript and Bootstrap for creating the public websites. I am always curious about new Technologies in IT field. I am always curious to learn new things evolving in the Tech industry.    </p>
+								<!--  -->
+							</div>
+						</div>
+
+
+						<div class="counter-wrap ftco-animate d-flex mt-md-3">
+							<div class="text">
+								<p class="mb-4">
+									<span class="number" data-number="3">0</span> <span>+</span>
+									<span>&nbsp; Projects completed</span>
+								</p>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </section>
+
+
+
+	
+    <section class="ftco-section ftco-no-pb" id="resume-section">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-10 heading-section text-center ftco-animate">
+          	<h1 class="big big-2">Gallery</h1>
+            <h2 class="mb-4">Gallery</h2>
+            
+          </div>
+        </div>
+
+		<div class="row d-flex">
+			<div class="col-md-4 d-flex ftco-animate">
+				<div class="blog-entry justify-content-end">
+				<a href="https://anoop2000.github.io/ytClone/" class="block-20 zoom-effect" style="background-image: url('./image3/youtube-sct.png');">
+				</a>
+				<div class="text mt-3 float-right d-block">
+  
+				  <h3 class="heading"><a href="https://anoop2000.github.io/ytClone/">Youtube Clone</a></h3>
+				  <p>Home page of Youtube created using basic HTML and CSS. </p>
+				</div>
+			  </div>
+			</div>
+			<div class="col-md-4 d-flex ftco-animate">
+				<div class="blog-entry justify-content-end">
+				<a href="https://anoop2000.github.io/Netflix-clone/Netflix.html" class="block-20 zoom-effect" style="background-image: url('./image3/netflix sct.png');">
+				</a>
+				<div class="text mt-3 float-right d-block">
+  
+				  <h3 class="heading"><a href="https://anoop2000.github.io/Netflix-clone/Netflix.html">Netflix Clone</a></h3>
+				  <p>Home page of Netflix created using Basic Tags of HTML and different styling properties of CSS. </p>
+				</div>
+			  </div>
+			</div>
+			<div class="col-md-4 d-flex ftco-animate">
+				<div class="blog-entry">
+				<a href="https://anoop2000.github.io/amazon-website-clone/" class="block-20 zoom-effect" style="background-image: url('./image3/amazon-sct.png');">
+				</a>
+				<div class="text mt-3 float-right d-block">
+  
+				  <h3 class="heading"><a href="https://anoop2000.github.io/amazon-website-clone/">Amazon Website</a></h3>
+				  <p>Its a Clone of Amazon Website.Its created by HTML,CSS,JS and bootstrap.</p>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</section>
+
+
+
+
+		<section class="ftco-section ftco-no-pb" id="service-section">
+			<div class="container">
+				<div class="row justify-content-center pb-5">
+			  <div class="col-md-10 heading-section text-center ftco-animate">
+				  <h1 class="big big-2">Services</h1>
+				<h2 class="mb-4">Service</h2>
+				
+			  </div>
+			</div>
+	
+			<div class="row d-flex">
+				<div class="col-md-4 d-flex ftco-animate">
+					<div class="blog-entry  text-align-center">
+						<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-basket-fill" viewBox="0 0 16 16">
+							<path d="M5.071 1.243a.5.5 0 0 1 .858.514L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 6h1.717zM3.5 10.5a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0z"/>
+						  </svg>
+					<div class="text mt-3 float-right d-block">
+	  
+					  <h3 class="heading"><a href="https://anoop2000.github.io/ytClone/">Strategy</a></h3>
+					  <p>Understanding the target audience.<br>
+						Balancing aesthetics with functionality.
+						Iterative testing and feedback loops.
+						Staying aligned with brand identity.
+						Anticipating future trends and technological advancements
+						</p>
+					</div>
+				  </div>
+				</div>
+				<div class="col-md-4 d-flex ftco-animate">
+					<div class="blog-entry justify-content-end">
+						<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-rocket" viewBox="0 0 16 16">
+							<path d="M8 8c.828 0 1.5-.895 1.5-2S8.828 4 8 4s-1.5.895-1.5 2S7.172 8 8 8"/>
+							<path d="M11.953 8.81c-.195-3.388-.968-5.507-1.777-6.819C9.707 1.233 9.23.751 8.857.454a3.5 3.5 0 0 0-.463-.315A2 2 0 0 0 8.25.064.55.55 0 0 0 8 0a.55.55 0 0 0-.266.073 2 2 0 0 0-.142.08 4 4 0 0 0-.459.33c-.37.308-.844.803-1.31 1.57-.805 1.322-1.577 3.433-1.774 6.756l-1.497 1.826-.004.005A2.5 2.5 0 0 0 2 12.202V15.5a.5.5 0 0 0 .9.3l1.125-1.5c.166-.222.42-.4.752-.57.214-.108.414-.192.625-.281l.198-.084c.7.428 1.55.635 2.4.635s1.7-.207 2.4-.635q.1.044.196.083c.213.09.413.174.627.282.332.17.586.348.752.57l1.125 1.5a.5.5 0 0 0 .9-.3v-3.298a2.5 2.5 0 0 0-.548-1.562zM12 10.445v.055c0 .866-.284 1.585-.75 2.14.146.064.292.13.425.199.39.197.8.46 1.1.86L13 14v-1.798a1.5 1.5 0 0 0-.327-.935zM4.75 12.64C4.284 12.085 4 11.366 4 10.5v-.054l-.673.82a1.5 1.5 0 0 0-.327.936V14l.225-.3c.3-.4.71-.664 1.1-.861.133-.068.279-.135.425-.199M8.009 1.073q.096.06.226.163c.284.226.683.621 1.09 1.28C10.137 3.836 11 6.237 11 10.5c0 .858-.374 1.48-.943 1.893C9.517 12.786 8.781 13 8 13s-1.517-.214-2.057-.607C5.373 11.979 5 11.358 5 10.5c0-4.182.86-6.586 1.677-7.928.409-.67.81-1.082 1.096-1.32q.136-.113.236-.18Z"/>
+							<path d="M9.479 14.361c-.48.093-.98.139-1.479.139s-.999-.046-1.479-.139L7.6 15.8a.5.5 0 0 0 .8 0z"/>
+						  </svg>
+					<div class="text mt-3 float-right d-block">
+	  
+					  <h3 class="heading"><a href="https://anoop2000.github.io/Netflix-clone/Netflix.html">Design</a></h3>
+					  <p>Responsive design. 
+						Clear navigation and intuitive layouts.
+						Consistent branding and visual identity.
+						Optimizing for speed and performance.
+						Accessibility considerations.
+					  </p>
+					</div>
+				  </div>
+				</div>
+				<div class="col-md-4 d-flex ftco-animate">
+					<div class="blog-entry">
+						<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-incognito" class="block-20 zoom-effect" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="m4.736 1.968-.892 3.269-.014.058C2.113 5.568 1 6.006 1 6.5 1 7.328 4.134 8 8 8s7-.672 7-1.5c0-.494-1.113-.932-2.83-1.205l-.014-.058-.892-3.27c-.146-.533-.698-.849-1.239-.734C9.411 1.363 8.62 1.5 8 1.5s-1.411-.136-2.025-.267c-.541-.115-1.093.2-1.239.735m.015 3.867a.25.25 0 0 1 .274-.224c.9.092 1.91.143 2.975.143a30 30 0 0 0 2.975-.143.25.25 0 0 1 .05.498c-.918.093-1.944.145-3.025.145s-2.107-.052-3.025-.145a.25.25 0 0 1-.224-.274M3.5 10h2a.5.5 0 0 1 .5.5v1a1.5 1.5 0 0 1-3 0v-1a.5.5 0 0 1 .5-.5m-1.5.5q.001-.264.085-.5H2a.5.5 0 0 1 0-1h3.5a1.5 1.5 0 0 1 1.488 1.312 3.5 3.5 0 0 1 2.024 0A1.5 1.5 0 0 1 10.5 9H14a.5.5 0 0 1 0 1h-.085q.084.236.085.5v1a2.5 2.5 0 0 1-5 0v-.14l-.21-.07a2.5 2.5 0 0 0-1.58 0l-.21.07v.14a2.5 2.5 0 0 1-5 0zm8.5-.5h2a.5.5 0 0 1 .5.5v1a1.5 1.5 0 0 1-3 0v-1a.5.5 0 0 1 .5-.5"/>
+						  </svg>
+					<div class="text mt-3 float-right d-block">
+	  
+					  <h3 class="heading"><a href="#">Development</a></h3>
+					  <p>Front-end development.
+						 Back-end development.
+						 Cross-browser compatibility.
+						 Version control systems.
+
+					  </p>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</section>
+
+
+		
+
+		
+	  
+
+		
+		
+		
+   
+
+    <section class="ftco-section" id="project-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Projects</h1>
+            <h2 class="mb-4">Projects</h2>
+            <p>Below are the Websites I have created.</p>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://anoop2000.github.io/ytClone/" class="block-20 zoom-effect" style="background-image: url('./image3/youtube-sct.png');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+
+                <h3 class="heading"><a href="https://anoop2000.github.io/ytClone/">Youtube Clone</a></h3>
+                <p>I have used basics of HTML&CSS.
+					Hovering effects, actions are incorporated in the website.
+
+				</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://anoop2000.github.io/Netflix-clone/Netflix.html" class="block-20 zoom-effect" style="background-image: url('./image3/netflix sct.png');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+
+                <h3 class="heading"><a href="https://anoop2000.github.io/Netflix-clone/Netflix.html">Netflix Clone</a></h3>
+                <p>I have used basics of HTML&CSS.
+					Hovering effects, actions are incorporated in the website.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry">
+              <a href="https://anoop2000.github.io/amazon-website-clone/" class="block-20 zoom-effect" style="background-image: url('./image3/amazon-sct.png');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+
+                <h3 class="heading"><a href="https://anoop2000.github.io/amazon-website-clone/">Amazon Clone</a></h3>
+                <p>
+					This is a responsive website created with bootstrap.
+					Grid system,Classes etc...
+
+				</p>
+              </div>
+            </div>
+          </div>
+        </div>
+		<br>
+		
+
+
+    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Contact</h1>
+            <h2 class="mb-4">Contact Me</h2>
+            
+			<!-- <button class="btn-danger"><a href="form-validation.html" target="_blank">Click here</a</button> -->
+          </div>
+        </div>
+
+		<form id="myForm">
+			
+			<input type="text" id="username"  placeholder="Username" style="width:100%;">
+			<span id="error" class="error"></span><br><br>
+			
+			
+			<input type="text"   id="email" name="email" placeholder="Your email address " style="width:100%;">
+			<span id="emailId" class="error"></span><br><br>
+
+			<input type="password" id="passWord" placeholder="New password" style="width:100%;">
+			<span id="passW" class="error"></span><br><br>
+
+			<input type="password" id="pass" placeholder="Confirm password" style="width:100%;">
+			<span id="confopass" class="error"></span><br><br>
+			
+			
+			
+			
+			<textarea  id="subject" name="message" placeholder="Type your message" style="height:170px; width:100%;"></textarea>
+			<span id="msg" class="error"></span><br><br>
+			<input type="submit" value="submit" class="btn btn-primary py-3 px-4">
+		</form>
+        
+
+
+		  
+	
+	
+		
+
+		  
+
+
+
+
+
+
+
+
+		
+
+		  <div class="container">
+			<br>
+			<br>
+			<div class="row justify-content-center">
+				<div class="col-md-7 ftco-animate text-center">
+					<h2>Have a<span> Question?  </span>  </h2>
+				</div>
+			</div>
+				<br>
+					<ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
+					  <li class="ftco-animate normal-txt">Find me on  </li>
+					  
+					  <li class="ftco-animate"><a href="https://www.linkedin.com/in/anoop-r-a09729221?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B2vc9GWzeQ9uJMJZGjevlwg%3D%3D"><span class="icon-linkedin"></span></a></li>  
+					  
+					</ul>
+				<br>
+		   </div>
+   </div>
+ </section>
+
+
+ 
+	
+    <footer class="ftco-footer ftco-section">
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-12 text-center">
+  
+			  <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+			</div>
+		  </div>
+		</div>
+	  </footer>
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  
+  <script src="js/main.js"></script>
+
+
+
+
+
+
+
+
+ 
+
+  
+    
+  </body>
+</html>
